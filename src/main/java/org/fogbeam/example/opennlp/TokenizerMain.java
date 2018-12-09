@@ -29,15 +29,36 @@ public class TokenizerMain
 	public static void main( String[] args ) throws Exception
 	{
 
-		//Fichero de entrada
-		//Fichero de entrada
-				File initialFile = new File("docs/sample.txt");
+	
 		// the model we trained
 		InputStream modelIn = new FileInputStream( "models/en-token.model" );
 
 		// Objeto que genera el fichero de salida
 		PrintStream DDescritor = new PrintStream("Resultados.txt");
         
+		String texto = null;
+
+	        try {
+	            FileReader entrada=new FileReader("docs/eval.txt");
+
+	                int c=0;
+
+	                while(c!=-1) {
+	                    c=entrada.read();
+
+	                    char letra=(char)c;
+
+	                    texto+=letra;
+	                }
+
+	                entrada.close();
+
+	                System.out.println(texto);
+
+	        } catch (IOException e) {
+
+	            System.out.println("No se ha encontrado el archivo");
+	        }
 
 		try
 		{
@@ -47,11 +68,7 @@ public class TokenizerMain
 			
 				/* note what happens with the "three depending on which model you use */
 			String[] tokens = tokenizer.tokenize
-					( "A ranger journeying with Oglethorpe, founder of the Georgia Colony, " 
-
-							+ " mentions \"three Mounts raised by the Indians over three of their Great Kings" 
-
-							+ " who were killed in the Wars.\""  );
+					( texto  );
 			
 			for( String token : tokens )
 			{
