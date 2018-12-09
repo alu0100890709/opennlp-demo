@@ -2,9 +2,13 @@
 package org.fogbeam.example.opennlp;
 
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 
 import opennlp.tools.tokenize.Tokenizer;
 import opennlp.tools.tokenize.TokenizerME;
@@ -23,6 +27,11 @@ public class TokenizerMain
 		// the model we trained
 		InputStream modelIn = new FileInputStream( "models/en-token.model" );
 		
+		////////////////////////////////////////////
+		
+		
+		PrintStream DDescritor = new PrintStream("Resultados.txt");
+        
 		try
 		{
 			TokenizerModel model = new TokenizerModel( modelIn );
@@ -38,6 +47,7 @@ public class TokenizerMain
 			for( String token : tokens )
 			{
 				System.out.println( token );
+				DDescritor.println(token);
 			}
 			
 		}
